@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>网申简历自动填充</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>网申简历自动填充</h1>
+      <span id="profileState" class="pill">检查档案中…</span>
+    </header>
+
+    <section class="detect">
+      <div class="count"><b id="fieldCount">–</b><span>个可填字段</span></div>
+      <div class="hint" id="detectHint"></div>
+    </section>
+
+    <div class="actions">
+      <button id="fillBtn" class="primary">填充当前页</button>
+      <button id="clearBtn">清空标注</button>
+    </div>
+
+    <section id="result" class="result" hidden></section>
+
+    <section id="manualRow" class="manual" hidden>
+      <span id="manualText"></span>
+      <button id="manualClearBtn" class="link">清除记录</button>
+    </section>
+
+    <section id="llmRow" class="manual" hidden>
+      <span id="llmText"></span>
+      <button id="llmToggle" class="link">关闭</button>
+    </section>
+
+    <footer>
+      <button id="optionsBtn" class="link">编辑档案</button>
+      <span class="ver">v0.4.1 · 数据仅存本机</span>
+    </footer>
+
+    <script src="../core/ns.js"></script>
+    <script src="../core/llm.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

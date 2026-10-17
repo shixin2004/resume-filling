@@ -1,0 +1,428 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  margin: 0;
+  font: 400 13px/1.6 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  color: #1f2329;
+  background: #f7f8fa;
+}
+
+/* ---------- 左侧导航 ---------- */
+
+.side {
+  width: 216px;
+  flex-shrink: 0;
+  padding: 20px 14px;
+  background: #fff;
+  border-right: 1px solid #e6e8eb;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.side h1 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.side .sub {
+  margin: 4px 0 16px;
+  color: #8a8f99;
+  font-size: 11px;
+}
+
+nav {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+nav a {
+  padding: 6px 9px;
+  border-radius: 6px;
+  color: #45494f;
+  text-decoration: none;
+  font-size: 12.5px;
+}
+
+nav a:hover {
+  background: #f1f2f4;
+  color: #185fa5;
+}
+
+.side-foot {
+  border-top: 1px solid #e6e8eb;
+  padding-top: 10px;
+}
+
+/* 左侧的「新增类目」：属于自定义内容，与导航之间留一点空气 */
+button.add-cat {
+  margin: 6px 0 10px;
+  border-style: dashed;
+  color: #185fa5;
+}
+
+nav .nav-sep {
+  margin: 8px 9px 2px;
+  color: #b0b4ba;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+}
+
+nav a.nav-cat {
+  color: #185fa5;
+}
+
+.dict-state {
+  color: #8a8f99;
+  font-size: 11px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+/* ---------- 主区域 ---------- */
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 20px 28px 60px;
+  max-width: 1000px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.save-state {
+  color: #8a8f99;
+  font-size: 12px;
+}
+
+.save-state.saved {
+  color: #0f6e56;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+section {
+  background: #fff;
+  border: 1px solid #e6e8eb;
+  border-radius: 10px;
+  padding: 14px 16px 16px;
+  margin-bottom: 14px;
+  scroll-margin-top: 16px;
+}
+
+section > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.hint {
+  margin: 0 0 10px;
+  color: #8a8f99;
+  font-size: 11px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.field.wide {
+  grid-column: 1 / -1;
+}
+
+.field > label {
+  color: #45494f;
+  font-size: 12px;
+}
+
+.req {
+  color: #d85a30;
+}
+
+.tag-sen {
+  margin-left: 6px;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: #fdf3e3;
+  color: #854f0b;
+  font-size: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="month"],
+select,
+textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #d9dce0;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 12.5px;
+  color: #1f2329;
+  background: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #185fa5;
+  box-shadow: 0 0 0 3px rgba(24, 95, 165, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 62px;
+}
+
+input[disabled] {
+  background: #f6f7f9;
+  color: #a8adb5;
+}
+
+/* ---------- 可重复段 ---------- */
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  border: 1px solid #ebedf0;
+  border-radius: 8px;
+  padding: 10px 12px 12px;
+  background: #fcfcfd;
+}
+
+.item > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.item > header span {
+  color: #8a8f99;
+  font-size: 11px;
+}
+
+/* ---------- 按钮 ---------- */
+
+button {
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  padding: 6px 11px;
+  border: 1px solid #d0d3d9;
+  border-radius: 7px;
+  background: #fff;
+  color: #1f2329;
+}
+
+button:hover {
+  border-color: #185fa5;
+  color: #185fa5;
+}
+
+button.ghost {
+  width: 100%;
+  padding: 5px;
+  font-size: 11.5px;
+}
+
+button.danger:hover {
+  border-color: #a32d2d;
+  color: #a32d2d;
+}
+
+button.tiny {
+  padding: 3px 8px;
+  font-size: 11.5px;
+  color: #8a8f99;
+}
+
+button.tiny:hover {
+  color: #a32d2d;
+  border-color: #a32d2d;
+}
+
+.foot-note {
+  margin: 18px 0 0;
+  color: #8a8f99;
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+
+.sen {
+  color: #854f0b;
+}
+
+/* ---------- 导入结果 ---------- */
+
+.import-report {
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  border: 1px solid #cfe3d4;
+  border-radius: 10px;
+  background: #f4faf5;
+  color: #1f2329;
+  font-size: 12.5px;
+  line-height: 1.8;
+}
+
+.import-report .warn {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed #e2cfa9;
+  color: #854f0b;
+}
+
+/* ---------- 大模型设置 ---------- */
+
+section.llm {
+  background: #fbfbfc;
+}
+
+section.llm h2 {
+  color: #45494f;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #45494f;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.switch input {
+  width: 14px;
+  height: 14px;
+  accent-color: #185fa5;
+  cursor: pointer;
+}
+
+.llm-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.llm-actions .hint {
+  margin: 0;
+}
+
+/* ---------- 自定义类目 ---------- */
+
+section.custom {
+  border-color: #cfe0f2;
+  background: #fbfdff;
+}
+
+section.custom h2 {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* 类目名直接就是一个输入框：改名字不必弹窗，也不会因为重渲染丢焦点 */
+input.cat-name {
+  width: 100%;
+  padding: 3px 6px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #185fa5;
+}
+
+input.cat-name:hover {
+  border-color: #d9dce0;
+}
+
+input.cat-name:focus {
+  border-color: #185fa5;
+  background: #fff;
+  box-shadow: none;
+}
+
+.cat-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.crow-head,
+.crow {
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr 1.4fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.crow-head {
+  padding: 0 2px 4px;
+  color: #8a8f99;
+  font-size: 11px;
+}
+
+.crows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.crow input {
+  min-width: 0;
+}
+
+.soft {
+  color: #b0b4ba;
+  font-weight: 400;
+}
+
+section.custom-empty {
+  border-style: dashed;
+  background: #fbfdff;
+}

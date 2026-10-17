@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "网申简历自动填充",
+  "version": "0.4.1",
+  "description": "把本机保存的简历档案一键填入企业网申表单，识别不了的字段明确标出。所有数据仅保存在本机。",
+  "minimum_chrome_version": "110",
+
+  "permissions": ["storage", "scripting", "activeTab"],
+  "host_permissions": ["<all_urls>"],
+
+  "background": {
+    "service_worker": "background/sw.js"
+  },
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "网申简历自动填充"
+  },
+
+  "options_page": "options/options.html",
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "core/ns.js",
+        "core/normalize.js",
+        "core/custom.js",
+        "core/schema.js",
+        "core/profile.js",
+        "core/scan.js",
+        "core/match.js",
+        "core/llm.js",
+        "core/llm-match.js",
+        "core/fill.js",
+        "core/repeatable.js",
+        "core/manual.js",
+        "core/report.js",
+        "core/adapters/index.js",
+        "content/overlay.js",
+        "content/content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["data/profile.schema.json", "data/field-aliases.json", "data/import-template.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

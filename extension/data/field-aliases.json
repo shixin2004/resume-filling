@@ -1,0 +1,884 @@
+{
+  "_meta": {
+    "version": 1,
+    "updatedAt": "2026-10-16",
+    "description": "别名同义词表，匹配引擎（L2）的核心词典。这是本项目唯一需要长期手工维护的资产，也是填充率的主要来源。",
+    "rules": [
+      "别名必须写归一化后的形式：小写、无标点、无「请输入/请选择/示例」等提示词、无空格。",
+      "每遇到一个识别失败的字段，就把该页面上的标签文本归一化后追加到对应 key 的数组里（追加在末尾）。",
+      "同一 key 下别名按「精确度」从高到低排列，越靠前越不可能误命中。",
+      "中文别名覆盖国内 ATS + 自研系统；英文别名覆盖外企与英文投递页。",
+      "不要写过于宽泛的别名（如单独的「名称」「时间」「编号」），会引入误填。宁可漏填。",
+      "sensitive=true 的字段（姓名/证件号/手机号/邮箱等）只接受精确相等命中，模糊匹配阶段会被跳过。"
+    ]
+  },
+  "aliases": {
+    "basic.nameCn": [
+      "姓名",
+      "名字",
+      "真实姓名",
+      "本人姓名",
+      "姓 名",
+      "中文姓名",
+      "full name",
+      "name",
+      "applicant name",
+      "your name",
+      "xingming",
+      "xm",
+      "benrenxingming",
+      "namecn"
+    ],
+    "basic.nameEn": [
+      "英文名",
+      "english name",
+      "name in english",
+      "preferred name",
+      "yingwenming",
+      "englishname"
+    ],
+    "basic.namePinyin": [
+      "姓名拼音",
+      "拼音",
+      "pinyin",
+      "name pinyin",
+      "xingmingpinyin",
+      "namepinyin"
+    ],
+    "basic.usedName": [
+      "曾用名",
+      "原名"
+    ],
+    "basic.gender": [
+      "性别",
+      "gender",
+      "sex",
+      "xingbie",
+      "xb"
+    ],
+    "basic.birthDate": [
+      "出生日期",
+      "出生年月",
+      "生日",
+      "出生时间",
+      "date of birth",
+      "birth date",
+      "birthday",
+      "dob",
+      "chushengriqi",
+      "csrq",
+      "birthdate",
+      "birth"
+    ],
+    "basic.age": [
+      "年龄",
+      "age",
+      "nianling",
+      "nl"
+    ],
+    "basic.nationality": [
+      "国籍",
+      "国家地区",
+      "nationality",
+      "country"
+    ],
+    "basic.ethnicity": [
+      "民族",
+      "ethnicity",
+      "ethnic group",
+      "minzu",
+      "mz"
+    ],
+    "basic.politicalStatus": [
+      "政治面貌",
+      "政治身份",
+      "党派",
+      "political status",
+      "zhengzhimianmao",
+      "zzmm"
+    ],
+    "basic.maritalStatus": [
+      "婚姻状况",
+      "婚否",
+      "marital status",
+      "hunfou",
+      "hunyinzhuangkuang"
+    ],
+    "basic.hometown": [
+      "籍贯",
+      "祖籍",
+      "native place",
+      "hometown",
+      "jiguan",
+      "jiguanzai"
+    ],
+    "basic.birthPlace": [
+      "出生地",
+      "出生省市",
+      "place of birth",
+      "chushengdi"
+    ],
+    "basic.householdRegister": [
+      "户口所在地",
+      "户籍所在地",
+      "户籍地址",
+      "户口",
+      "household registration",
+      "hukou",
+      "hukousuozai",
+      "hujidizhi"
+    ],
+    "basic.photo": [
+      "证件照",
+      "照片",
+      "本人照片",
+      "photo",
+      "portrait"
+    ],
+    "identity.idType": [
+      "证件类型",
+      "身份证件类型",
+      "id type",
+      "document type",
+      "zhengjianleixing",
+      "zhengjiantype"
+    ],
+    "identity.idNumber": [
+      "身份证号",
+      "身份证号码",
+      "证件号码",
+      "身份证件号",
+      "id number",
+      "id card number",
+      "identification number",
+      "shenfenzheng",
+      "shenfenzhenghao",
+      "sfzh",
+      "sfz",
+      "idcard",
+      "idcardno"
+    ],
+    "identity.idValidUntil": [
+      "证件有效期",
+      "身份证有效期",
+      "id expiry date",
+      "valid until"
+    ],
+    "identity.idIssuePlace": [
+      "证件签发地",
+      "签发机关",
+      "issue place"
+    ],
+    "contact.mobile": [
+      "手机号",
+      "手机",
+      "手机号码",
+      "联系电话",
+      "移动电话",
+      "联系方式",
+      "本人手机",
+      "常用电话",
+      "电话",
+      "mobile",
+      "phone",
+      "phone number",
+      "cell phone",
+      "contact number",
+      "shouji",
+      "shoujihao",
+      "shoujihaoma",
+      "lianxidianhua",
+      "yidongdianhua",
+      "sj"
+    ],
+    "contact.email": [
+      "邮箱",
+      "电子邮箱",
+      "电子邮件",
+      "常用邮箱",
+      "email",
+      "e-mail",
+      "email address",
+      "youxiang",
+      "dianziyouxiang",
+      "yx",
+      "emailaddress"
+    ],
+    "contact.wechat": [
+      "微信",
+      "微信号",
+      "wechat",
+      "weixin",
+      "weixinhao"
+    ],
+    "contact.qq": [
+      "qq",
+      "qq号",
+      "qqhao"
+    ],
+    "contact.address": [
+      "通讯地址",
+      "联系地址",
+      "详细地址",
+      "现住址",
+      "address",
+      "mailing address",
+      "tongxundizhi",
+      "lianxidizhi",
+      "xiangxidizhi",
+      "dizhi"
+    ],
+    "contact.postalCode": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "zip code",
+      "zip",
+      "youbian",
+      "yb"
+    ],
+    "contact.currentCity": [
+      "现居住地",
+      "现居城市",
+      "当前所在地",
+      "所在城市",
+      "current location",
+      "current city",
+      "xianjuzhudi",
+      "xianjuzhuchengshi",
+      "suozaichengshi"
+    ],
+    "contact.emergencyName": [
+      "紧急联系人",
+      "紧急联系人姓名",
+      "emergency contact",
+      "emergency contact name",
+      "jinjilianxiren",
+      "jinjilianxirenxingming"
+    ],
+    "contact.emergencyRelation": [
+      "紧急联系人关系",
+      "与本人关系",
+      "relationship",
+      "jinjilianxirenguanxi",
+      "yubengrenguanxi"
+    ],
+    "contact.emergencyMobile": [
+      "紧急联系人电话",
+      "紧急联系电话",
+      "emergency contact phone",
+      "emergency phone",
+      "jinjilianxirendianhua",
+      "jinjidianhua"
+    ],
+    "educations[].school": [
+      "毕业院校",
+      "学校",
+      "学校名称",
+      "院校",
+      "就读院校",
+      "就读学校",
+      "毕业学校",
+      "school",
+      "university",
+      "college",
+      "institution",
+      "school name",
+      "biyeyuanxiao",
+      "xuexiao",
+      "xuexiaomingcheng",
+      "yuanxiao",
+      "byyx",
+      "xx"
+    ],
+    "educations[].schoolCity": [
+      "院校所在地",
+      "学校所在地",
+      "院校城市",
+      "school location",
+      "yuanxiaosuozaidi",
+      "xuexiaosuozaidi"
+    ],
+    "educations[].schoolLevel": [
+      "院校层次",
+      "学校层次",
+      "院校类型",
+      "是否985",
+      "是否211"
+    ],
+    "educations[].major": [
+      "专业",
+      "所学专业",
+      "专业名称",
+      "主修专业",
+      "本科专业",
+      "major",
+      "field of study",
+      "specialty",
+      "zhuanye",
+      "suoxuezhuanye",
+      "zhuanyemingcheng",
+      "zy"
+    ],
+    "educations[].majorCategory": [
+      "专业类别",
+      "专业大类",
+      "学科门类",
+      "major category"
+    ],
+    "educations[].eduLevel": [
+      "学历",
+      "最高学历",
+      "学历层次",
+      "当前学历",
+      "education level",
+      "highest degree",
+      "degree level",
+      "xueli",
+      "zuigaoxueli",
+      "xl",
+      "zgxl"
+    ],
+    "educations[].degree": [
+      "学位",
+      "最高学位",
+      "学位类型",
+      "degree",
+      "academic degree",
+      "xuewei",
+      "zuigaoxuewei",
+      "xw"
+    ],
+    "educations[].startDate": [
+      "入学时间",
+      "入学日期",
+      "开始时间",
+      "起止时间",
+      "就读起止",
+      "start date",
+      "enrollment date",
+      "from"
+    ],
+    "educations[].endDate": [
+      "毕业时间",
+      "毕业日期",
+      "结束时间",
+      "预计毕业时间",
+      "graduation date",
+      "end date",
+      "to"
+    ],
+    "educations[].studyMode": [
+      "学习形式",
+      "培养方式",
+      "是否全日制",
+      "study mode",
+      "xuexixingshi",
+      "peiyangfangshi",
+      "xuexixingzhi"
+    ],
+    "educations[].gpa": [
+      "gpa",
+      "绩点",
+      "平均绩点",
+      "成绩绩点",
+      "gpa成绩",
+      "jidian",
+      "pingjunjidian",
+      "chengjijidian"
+    ],
+    "educations[].gpaRank": [
+      "专业排名",
+      "年级排名",
+      "排名",
+      "rank",
+      "zhuanyepaiming",
+      "nianjipaiming"
+    ],
+    "educations[].isUnified": [
+      "是否统招",
+      "统招",
+      "是否统招本科"
+    ],
+    "educations[].transcript": [
+      "成绩单",
+      "本科成绩单",
+      "transcript"
+    ],
+    "internships[].company": [
+      "公司名称",
+      "公司",
+      "实习公司",
+      "单位名称",
+      "工作单位",
+      "company",
+      "employer",
+      "company name",
+      "gongsimingcheng",
+      "gongsi",
+      "danweimingcheng",
+      "gongzuodanwei",
+      "gsmc"
+    ],
+    "internships[].industry": [
+      "所属行业",
+      "行业",
+      "industry"
+    ],
+    "internships[].department": [
+      "部门",
+      "所属部门",
+      "department",
+      "suoshubumen",
+      "bumen"
+    ],
+    "internships[].position": [
+      "职位",
+      "职位名称",
+      "岗位",
+      "实习岗位",
+      "担任职位",
+      "职务",
+      "position",
+      "job title",
+      "title",
+      "role",
+      "zhiwei",
+      "gangwei",
+      "zhiweimingcheng",
+      "gangweimingcheng",
+      "gw"
+    ],
+    "internships[].city": [
+      "工作城市",
+      "工作地点",
+      "实习城市",
+      "location",
+      "work location",
+      "city",
+      "gongzuochengshi",
+      "gongzuodidian"
+    ],
+    "internships[].startDate": [
+      "开始时间",
+      "入职时间",
+      "实习开始时间",
+      "start date",
+      "from"
+    ],
+    "internships[].endDate": [
+      "结束时间",
+      "离职时间",
+      "实习结束时间",
+      "end date",
+      "to"
+    ],
+    "internships[].salary": [
+      "薪资",
+      "实习薪资",
+      "月薪",
+      "salary"
+    ],
+    "internships[].description": [
+      "工作内容",
+      "实习内容",
+      "工作描述",
+      "岗位职责",
+      "主要工作",
+      "工作职责",
+      "description",
+      "job description",
+      "responsibilities",
+      "gongzuoneirong",
+      "gangweizhize",
+      "zhiwemiaooshu"
+    ],
+    "internships[].leaveReason": [
+      "离职原因",
+      "结束原因"
+    ],
+    "internships[].certificate": [
+      "实习证明",
+      "工作证明"
+    ],
+    "projects[].name": [
+      "项目名称",
+      "项目",
+      "项目名",
+      "project",
+      "project name",
+      "xiangmumingcheng",
+      "xiangmu",
+      "xmmingcheng"
+    ],
+    "projects[].role": [
+      "担任角色",
+      "项目角色",
+      "在项目中担任",
+      "role",
+      "xiangmujiaose",
+      "danshenrenjiaose"
+    ],
+    "projects[].startDate": [
+      "项目开始时间",
+      "开始时间",
+      "start date"
+    ],
+    "projects[].endDate": [
+      "项目结束时间",
+      "结束时间",
+      "end date"
+    ],
+    "projects[].techStack": [
+      "技术栈",
+      "使用技术",
+      "涉及技术",
+      "tech stack",
+      "technologies",
+      "jishuzhan",
+      "shiyongjishu"
+    ],
+    "projects[].description": [
+      "项目描述",
+      "项目内容",
+      "项目介绍",
+      "项目简介",
+      "description",
+      "project description",
+      "xiangmumiaoshu",
+      "xiangmuneirong",
+      "xiangmujianjie"
+    ],
+    "projects[].achievement": [
+      "项目成果",
+      "项目业绩",
+      "成果",
+      "achievement",
+      "results"
+    ],
+    "projects[].link": [
+      "项目链接",
+      "项目地址",
+      "github",
+      "项目主页",
+      "link",
+      "url"
+    ],
+    "campus[].organization": [
+      "学生组织",
+      "社团",
+      "组织名称",
+      "学生工作",
+      "校园经历单位"
+    ],
+    "campus[].position": [
+      "担任职务",
+      "学生职务",
+      "社团职务",
+      "职务"
+    ],
+    "campus[].startDate": [
+      "开始时间",
+      "start date"
+    ],
+    "campus[].endDate": [
+      "结束时间",
+      "end date"
+    ],
+    "campus[].description": [
+      "经历描述",
+      "校园经历描述",
+      "主要工作"
+    ],
+    "skills.englishLevel": [
+      "英语等级",
+      "外语等级",
+      "英语水平",
+      "外语水平",
+      "english level",
+      "english proficiency",
+      "yingyudengji",
+      "yingyushuiping",
+      "wydj",
+      "英语等级证书",
+      "外语等级证书"
+    ],
+    "skills.englishScore": [
+      "英语成绩",
+      "四六级成绩",
+      "cet成绩",
+      "english score",
+      "yingyuchengji",
+      "liujichengji",
+      "cetchengji",
+      "英语等级成绩",
+      "英语等级考试成绩",
+      "四六级分数"
+    ],
+    "skills.otherLanguage": [
+      "其他语言",
+      "第二外语",
+      "other language"
+    ],
+    "skills.computerLevel": [
+      "计算机等级",
+      "计算机水平",
+      "计算机等级证书",
+      "jisuanjidengji",
+      "jisuanjishuiping"
+    ],
+    "skills.programmingLanguages": [
+      "编程语言",
+      "掌握语言",
+      "熟悉语言",
+      "programming languages"
+    ],
+    "skills.frameworks": [
+      "技术框架",
+      "开发框架",
+      "熟悉框架"
+    ],
+    "skills.certificates": [
+      "资格证书",
+      "证书",
+      "职业资格",
+      "从业资格",
+      "已获证书",
+      "certificates",
+      "certifications",
+      "license",
+      "zigezhengshu",
+      "zhengshu",
+      "huodezhengshu"
+    ],
+    "skills.drivingLicense": [
+      "驾照",
+      "驾驶证",
+      "驾驶执照",
+      "driving license",
+      "jiazhao",
+      "jiashizheng"
+    ],
+    "skills.awards": [
+      "获奖情况",
+      "所获奖励",
+      "荣誉奖项",
+      "奖学金",
+      "获奖经历",
+      "awards",
+      "honors",
+      "huojiangqingkuang",
+      "huojiangjingli",
+      "rongyujiangxiang",
+      "jiangxuejin",
+      "获奖项",
+      "获奖描述",
+      "获奖明细",
+      "所获荣誉"
+    ],
+    "skills.selfEvaluation": [
+      "自我评价",
+      "个人评价",
+      "自我介绍",
+      "self evaluation",
+      "self introduction",
+      "about yourself",
+      "ziwoopingjia",
+      "gerenpingjia",
+      "ziwopj",
+      "自我描述",
+      "自我简介",
+      "个人简介",
+      "个人描述"
+    ],
+    "job.expectedPosition": [
+      "期望职位",
+      "应聘职位",
+      "期望岗位",
+      "意向岗位",
+      "应聘岗位",
+      "求职意向岗位",
+      "期望从事职业",
+      "position applied",
+      "desired position",
+      "expected position",
+      "qiwangzhiwei",
+      "yingpinzhiwei",
+      "qiwanggangwei",
+      "zhiweiyixiang",
+      "qwzw"
+    ],
+    "job.expectedCity": [
+      "期望工作地点",
+      "期望城市",
+      "意向工作城市",
+      "期望工作地",
+      "意向地区",
+      "工作地点意向",
+      "preferred location",
+      "expected city",
+      "desired location",
+      "qiwangchengshi",
+      "qiwanggongzuodidian",
+      "qiwanggongzuochengshi",
+      "yixiangdiqu",
+      "qwcs"
+    ],
+    "job.expectedSalary": [
+      "期望薪资",
+      "期望月薪",
+      "薪资要求",
+      "expected salary",
+      "salary expectation",
+      "qiwangxinzhi",
+      "xinzhiyaoqiu",
+      "qwxz"
+    ],
+    "job.jobType": [
+      "工作性质",
+      "求职类型",
+      "岗位性质",
+      "employment type",
+      "job type",
+      "gongzuoxingzhi",
+      "qiuzhileixing",
+      "gzxz"
+    ],
+    "job.availableDate": [
+      "到岗时间",
+      "可到岗时间",
+      "最快到岗",
+      "入职时间",
+      "available date",
+      "start availability",
+      "daogangshijian",
+      "kedaogangshijian",
+      "ruzhishijian",
+      "可正式上班时间",
+      "正式上班时间",
+      "可入职时间"
+    ],
+    "job.acceptRelocation": [
+      "是否接受调剂",
+      "是否服从调剂",
+      "接受调剂"
+    ],
+    "job.acceptBusinessTrip": [
+      "是否接受出差",
+      "能否出差",
+      "接受出差"
+    ],
+    "job.channel": [
+      "获取渠道",
+      "了解渠道",
+      "信息来源",
+      "获知渠道",
+      "how did you hear",
+      "huoququdao",
+      "liaojiequdao",
+      "xinxilaiyuan"
+    ],
+    "job.referralCode": [
+      "内推码",
+      "推荐码",
+      "邀请码",
+      "referral code",
+      "neituima",
+      "tuijianma",
+      "yaoqingma"
+    ],
+    "open.whyThisCompany": [
+      "为什么选择我们公司",
+      "为什么选择本公司",
+      "选择公司的原因",
+      "对公司了解",
+      "why this company",
+      "why do you want to work here",
+      "weifengsongshenme",
+      "xuanzegongsideyuanyin"
+    ],
+    "open.whyThisPosition": [
+      "为什么应聘该岗位",
+      "为什么选择这个岗位",
+      "应聘该职位的原因",
+      "why this position",
+      "why this role"
+    ],
+    "open.careerPlan": [
+      "职业规划",
+      "未来规划",
+      "职业发展目标",
+      "career plan",
+      "career goals",
+      "zhiyeguihua",
+      "zhiyefazhanguihua"
+    ],
+    "open.strength": [
+      "个人优势",
+      "你的优势",
+      "自身优势",
+      "strengths",
+      "your strengths",
+      "gerenyoushi",
+      "nideyoushi",
+      "zishengyoushi"
+    ],
+    "open.weakness": [
+      "个人不足",
+      "你的缺点",
+      "自身劣势",
+      "weaknesses"
+    ],
+    "open.hobby": [
+      "兴趣爱好",
+      "特长爱好",
+      "个人爱好",
+      "hobbies",
+      "interests",
+      "xingquaihao",
+      "aihao",
+      "techangaihao"
+    ],
+    "open.autobiography": [
+      "自我介绍",
+      "个人简介",
+      "自荐信",
+      "个人陈述",
+      "about me",
+      "personal statement",
+      "ziwojieshao",
+      "gerenjianjie"
+    ],
+    "assets.resume": [
+      "简历",
+      "简历上传",
+      "上传简历",
+      "附件简历",
+      "个人简历",
+      "resume",
+      "cv",
+      "upload resume",
+      "attach resume",
+      "jianli",
+      "shangchuanjianli",
+      "fujianjianli",
+      "uploadresume"
+    ],
+    "assets.resumeEn": [
+      "英文简历",
+      "英文版简历",
+      "english resume",
+      "english cv"
+    ],
+    "assets.transcript": [
+      "成绩单",
+      "上传成绩单",
+      "transcript"
+    ],
+    "assets.awardProof": [
+      "获奖证明",
+      "证书扫描件",
+      "证明材料"
+    ]
+  }
+}

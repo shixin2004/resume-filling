@@ -1,0 +1,266 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 320px;
+  margin: 0;
+  padding: 0;
+  font: 400 13px/1.6 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  color: #1f2329;
+  background: #fff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px 8px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pill {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f1f2f4;
+  color: #8a8f99;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.pill.ok {
+  background: #e6f7f1;
+  color: #0f6e56;
+}
+
+.pill.warn {
+  background: #fdf3e3;
+  color: #854f0b;
+}
+
+.detect {
+  padding: 0 14px 12px;
+}
+
+.count {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.count b {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.count span {
+  color: #646a73;
+  font-size: 12px;
+}
+
+.hint {
+  margin-top: 2px;
+  color: #8a8f99;
+  font-size: 11px;
+  min-height: 16px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  padding: 0 14px 12px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid #d0d3d9;
+  background: #fff;
+  color: #1f2329;
+  padding: 7px 12px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+button:hover:not(:disabled) {
+  border-color: #185fa5;
+  color: #185fa5;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  flex: 1;
+  background: #185fa5;
+  border-color: #185fa5;
+  color: #fff;
+}
+
+button.primary:hover:not(:disabled) {
+  background: #134a80;
+  border-color: #134a80;
+  color: #fff;
+}
+
+.result {
+  margin: 0 14px 12px;
+  border: 1px solid #edeef0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 9px 10px;
+  background: #fafbfc;
+  border-bottom: 1px solid #edeef0;
+  font-size: 11px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.stat.ok i {
+  background: #1d9e75;
+}
+
+.stat.review i {
+  background: #ef9f27;
+}
+
+.stat.failed i {
+  background: #e24b4a;
+}
+
+.stat.unmatched i {
+  background: #8c8c8c;
+}
+
+.stat.kept i {
+  background: #64748b;
+}
+
+.stat.manual i {
+  background: #185fa5;
+}
+
+.list {
+  max-height: 180px;
+  overflow: auto;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* 与浮层面板同一套规则：字段名不压缩不换行（否则会被长原因挤成竖排），
+   原因占剩余宽度并自然折行，避免横向溢出 */
+.row .name {
+  flex: 0 0 auto;
+  max-width: 45%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row .meta {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: right;
+  color: #8a8f99;
+  font-size: 11px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.row.fail .name {
+  color: #a32d2d;
+}
+
+.seg {
+  color: #185fa5;
+  font-size: 11px;
+  margin-right: 4px;
+}
+
+.notes {
+  padding: 7px 10px;
+  background: #fffaf0;
+  border-bottom: 1px solid #f2e6d0;
+  color: #8a6d3b;
+  font-size: 11px;
+}
+
+.notes div + div {
+  margin-top: 3px;
+}
+
+.tip {
+  padding: 8px 10px;
+  color: #8a8f99;
+  font-size: 11px;
+}
+
+.manual {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 14px 10px;
+  padding: 7px 10px;
+  border: 1px solid #edeef0;
+  border-radius: 8px;
+  background: #fafbfc;
+  color: #646a73;
+  font-size: 11px;
+}
+
+.manual[hidden] {
+  display: none;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 14px 12px;
+  border-top: 1px solid #edeef0;
+  background: #fafbfc;
+}
+
+button.link {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #185fa5;
+}
+
+.ver {
+  color: #a8adb5;
+  font-size: 11px;
+}

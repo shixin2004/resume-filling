@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>简历档案 · 网申自动填充</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <aside class="side">
+      <h1>简历档案</h1>
+      <p class="sub">填一次，所有网申页面复用。数据只存在本机。</p>
+      <nav id="nav"></nav>
+      <button id="addCategory" class="ghost add-cat">＋ 新增自定义类目</button>
+      <div class="side-foot">
+        <div id="dictState" class="dict-state">词典加载中…</div>
+        <button id="reloadDict" class="ghost">重载词典</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="toolbar">
+        <div class="save-state" id="saveState">未修改</div>
+        <div class="toolbar-actions">
+          <button id="exportBtn">导出 JSON</button>
+          <button id="importBtn">导入 JSON</button>
+          <button id="templateBtn" class="ghost">下载导入模板</button>
+          <button id="clearBtn" class="danger">清空档案</button>
+          <input id="importFile" type="file" accept="application/json,.json" hidden />
+        </div>
+      </div>
+
+      <div id="importReport" class="import-report" hidden></div>
+
+      <section class="llm">
+        <header>
+          <h2>大模型补字段（L3 · 可选）</h2>
+          <label class="switch"><input type="checkbox" id="llmEnabled" /> 启用</label>
+        </header>
+        <p class="hint">
+          规则匹配之后还有必填字段认不出来时，把「页面标签 + 可选值 + 档案字段清单」交给大模型，
+          让它给出对应关系。只发标签，<b>不发你在档案里填的任何值</b>；身份证、手机号、邮箱等敏感字段
+          永远不会外发。不配置这一块，扩展照样能跑，只是那些怪标签的字段需要你手动点一下。
+        </p>
+        <div class="grid">
+          <div class="field wide">
+            <label>接口地址（OpenAI 兼容即可）</label>
+            <input type="text" id="llmBaseUrl" placeholder="https://api.deepseek.com/v1 · 本地 Ollama 用 http://localhost:11434/v1" />
+          </div>
+          <div class="field">
+            <label>模型名</label>
+            <input type="text" id="llmModel" placeholder="deepseek-chat" />
+          </div>
+          <div class="field">
+            <label>API Key</label>
+            <input type="password" id="llmApiKey" placeholder="本地模型可留空" />
+          </div>
+          <div class="field">
+            <label>超时（毫秒）</label>
+            <input type="number" id="llmTimeout" value="8000" min="1000" step="500" />
+          </div>
+          <div class="field wide">
+            <label>同一站点缓存多久（分钟，0 = 每次都问）</label>
+            <input type="number" id="llmCacheTtl" value="1440" min="0" step="30" />
+          </div>
+        </div>
+        <div class="llm-actions">
+          <button id="llmTest" class="ghost">测试连接</button>
+          <span id="llmState" class="hint"></span>
+        </div>
+      </section>
+
+      <div id="form"></div>
+
+      <p class="foot-note">
+        标 <b class="req">*</b> 的是常见必填项。标注 <b class="sen">敏感</b> 的字段（姓名、证件号、手机号、邮箱等）
+        只会在页面上精确匹配时才自动填，且永远不会发送给大模型。
+      </p>
+      <p class="foot-note">
+        页面上还有清单没覆盖的字段时，有两个办法：在页面右下角点未识别的红点手动指定，
+        或者在这里加一个<b>自定义类目</b>把那一列记下来 —— 填一次，以后所有网站都自动认。
+        自定义列的值同样只存在本机，也不会发给大模型。
+      </p>
+    </main>
+
+    <script src="../core/ns.js"></script>
+    <script src="../core/normalize.js"></script>
+    <script src="../core/custom.js"></script>
+    <script src="../core/schema.js"></script>
+    <script src="../core/profile.js"></script>
+    <script src="../core/llm.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

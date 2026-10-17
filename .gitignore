@@ -1,0 +1,11 @@
+# 隐私：真实简历档案，绝不提交
+profiles/
+dist/
+tools/
+fixtures/
+docs/
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+*.swp
