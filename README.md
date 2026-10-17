@@ -87,3 +87,12 @@
 详见 [LICENSE](./LICENSE)。
 
 > 说明：由于禁止商业使用，本项目属于**源码公开（source-available）**，并非 OSI 定义的开源（open source）。
+
+---
+
+## 讲解视频与联系
+
+- **讲解视频（Bilibili）**：[网申简历自动填充助手浏览器扩展](https://www.bilibili.com/video/BV1ePJe6TEaV/)
+- **问题反馈 / 联系作者**：QQ 2837263645
+
+使用中有问题、或想提建议，欢迎通过以上方式联系。
